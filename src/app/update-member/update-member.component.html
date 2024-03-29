@@ -1,0 +1,27 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-head">
+            <h2>Modifier le membre</h2>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="updateFormGroup" (ngSubmit)="handleUpdateMember()">
+                <div class="mb-2">
+                    <label class="input-group-text">Prénom :</label>
+                    <input type="text" formControlName="firstName" [(ngModel)]="member.firstName" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <label class="input-group-text">Nom :</label>
+                    <input type="text" formControlName="lastName" [(ngModel)]="member.lastName" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <label class="input-group-text">Email :</label>
+                    <input type="email" formControlName="email" [(ngModel)]="member.email" class="form-control">
+                </div>
+                <div class="mb-2 d-flex justify-content-center">
+                    <button [disabled]="!updateFormGroup.valid" class="btn btn-success">Modifier</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

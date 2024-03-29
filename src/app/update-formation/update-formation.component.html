@@ -1,0 +1,32 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-head">
+          <h2>Modifier la formation</h2> 
+        </div>
+    <div class="card-body">
+        <form [formGroup]="updateFormGroup" (ngSubmit)="handleUpdateFormation()">
+            <div class="mb-2">
+                <label class="input-group-text"> Title : </label>
+                <input type="text" formControlName="title" [(ngModel)]="formation.title" class="form-control">
+            
+             </div>
+             <div class="mb-2">
+                 <label class="input-group-text"> Description : </label>
+                 <input type="text" formControlName="description" [(ngModel)]="formation.description" class="form-control">
+             </div>
+             <div class="mb-2">
+                 <label class="input-group-text"> Date Start : </label>
+                 <input type="datetime-local" formControlName="dateStart"  [(ngModel)]="formation.dateStart"  class="form-control">
+             </div>
+             <div class="mb-2">
+                 <label class="input-group-text"> Date End: </label>
+                 <input type="datetime-local" formControlName="dateEnd"  [(ngModel)]="formation.dateEnd" class="form-control">
+             </div>
+             <div class="mb-2 d-flex justify-content-center">
+                <button [disabled]="!updateFormGroup.valid" class="btn btn-success " > Modifier </button>
+                    </div>
+   </form>
+
+    </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="container mt-2">
+    <div class="card col-md-6 offset-md-3 mt-5">
+        <div class="card-header">
+            Ajouter un membre
+        </div>
+
+        <div class="card-body">
+            <form [formGroup]="saveMemberFormGroup" (ngSubmit)="handleSaveMember()">
+
+                <div class="mb-2">
+                    <label class="input-group-text">Prénom :</label>
+                    <input type="text" formControlName="firstName" class="form-control">
+                    <span *ngIf="saveMemberFormGroup.controls['firstName'].touched && saveMemberFormGroup.controls['firstName'].errors && saveMemberFormGroup.controls['firstName'].errors!['required']" class="text-danger">
+                        Prénom requis
+                    </span>
+                </div>
+                <div class="mb-2">
+                    <label class="input-group-text">Nom :</label>
+                    <input type="text" formControlName="lastName" class="form-control">
+                    <span *ngIf="saveMemberFormGroup.controls['lastName'].touched && saveMemberFormGroup.controls['lastName'].errors && saveMemberFormGroup.controls['lastName'].errors!['required']" class="text-danger">
+                        Nom requis
+                    </span>
+                </div>
+                <div class="mb-2">
+                    <label class="input-group-text">Email :</label>
+                    <input type="email" formControlName="email" class="form-control">
+                    <span *ngIf="saveMemberFormGroup.controls['email'].touched && saveMemberFormGroup.controls['email'].errors && saveMemberFormGroup.controls['email'].errors!['required']" class="text-danger">
+                        Adresse email requise
+                    </span>
+                    <span *ngIf="saveMemberFormGroup.controls['email'].touched && saveMemberFormGroup.controls['email'].errors && saveMemberFormGroup.controls['email'].errors!['email']" class="text-danger">
+                        Format d'adresse email incorrect
+                    </span>
+                </div>
+                <div class="mb-2 d-flex justify-content-center">
+                    <button [disabled]="!saveMemberFormGroup.valid" class="btn btn-success">Enregistrer</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

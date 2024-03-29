@@ -1,0 +1,49 @@
+<div class="container mt-3">
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+    <div class="card" *ngIf="formations">
+        <div class="card-header d-flex justify-content-between align-items-center mb-3">
+            <h2>Formations</h2>
+            <button (click)="goToSaveFormation()" class="btn btn-primary btn-lg">Créer une formation</button>
+        </div>
+        <div class="card-body">
+            <div *ngIf="searchFormGroup">
+                <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchFormations()">
+                    <div class="input-group">
+                        <label class="input-group-text">Keyword:</label>
+                        <input type="text" formControlName="keyword" class="form-control">
+                        <button class="btn btn-info"><i class="bi bi-search"></i></button>
+                    </div>
+                </form>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Date de début</th>
+                        <th>Date de fin</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let formation of formations" [routerLink]="'details-formation/' + formation.id" [style.textDecoration]="formation.state ? 'line-through' : 'none'">
+                        <td>{{ formation.id }}</td>
+                        <td>{{ formation.title }}</td>
+                        <td>{{ formation.description }}</td>
+                        <td>{{ formation.dateStart | date:'dd/MM/yyyy' }}</td>
+                        <td>{{ formation.dateEnd | date:'dd/MM/yyyy' }}</td>
+                        <td>
+                            <button (click)="changeState(formation)" class="btn btn-success"><i class="bi bi-check-circle"></i> </button>
+                            <button (click)="goToUpdateFormation(formation.id)" class="btn btn-primary"><i class="bi bi-pencil"></i> </button>
+                            <button (click)="handleDeleteFormation(formation)" class="btn btn-danger"><i class="bi bi-trash"></i> </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" class="text-center"><em>Cliquez sur une formation pour afficher les détails et les membres associés</em></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

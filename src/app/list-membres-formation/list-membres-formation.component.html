@@ -1,0 +1,52 @@
+<div class="container mt-3">
+    <h2 class="text-primary">Détails de la formation</h2>
+    <div *ngIf="formation" class="card border-primary">
+        <div class="card-body">
+            <p class="card-text"><strong>ID:</strong> {{ formation.id }}</p>
+            <p class="card-text"><strong>Titre:</strong> {{ formation.title }}</p>
+            <p class="card-text"><strong>Description:</strong> {{ formation.description }}</p>
+            <p class="card-text"><strong>Date de début:</strong> {{ formation.dateStart }}</p>
+            <p class="card-text"><strong>Date de fin:</strong> {{ formation.dateEnd }}</p>
+        </div>
+    </div>
+    <h2 class="text-success mt-3">Membres associés
+
+    </h2>
+   
+    <div *ngIf="members && members.length > 0" class="card border-success">
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-light" *ngFor="let member of members">
+                    {{ member.firstName }} {{ member.lastName }} - {{ member.email }}
+                  
+                    <button (click)="goToUpdateMember(member.id)" class="btn btn-info btn-sm"><i class="bi bi-pencil"></i> </button>
+                    <button (click)="removeMember(member)" class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash"></i> 
+                    </button>
+                </li>
+                <li class="list-group-item bg-light">
+                    <h3 class="text-muted font-size-lg">Ajouter un nouveau membre :</h3> 
+
+        <form (submit)="ajouterMembre()">
+          <div class="form-group">
+            <label>Nom:</label>
+            <input type="text" class="form-control" [(ngModel)]="nouveauMembre.firstName" name="firstName">
+          </div>
+          <div class="form-group">
+            <label>Prénom:</label>
+            <input type="text" class="form-control" [(ngModel)]="nouveauMembre.lastName" name="lastName">
+          </div>
+          <div class="form-group">
+            <label>Email:</label>
+            <input type="email" class="form-control" [(ngModel)]="nouveauMembre.email" name="email">
+          </div>
+          <button type="submit" class="btn btn-primary">Ajouter</button>
+        </form>
+      </li>
+            </ul>
+        </div>
+    </div>
+    <div *ngIf="!members || members.length === 0" class="alert alert-info mt-3" role="alert">
+        Aucun membre associé à cette formation.
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container mt-2">
+    <div class="card col-md-6 offset-md-3 mt-5">
+        <div class="card-header">
+            Ajouter un conducteur
+        </div>
+
+        <div class="card-body">
+            <form [formGroup]="saveFormationFormGroup" (ngSubmit)="handleSaveFormation()">
+
+                    <div class="mb-2">
+                       <label class="input-group-text"> Title : </label>
+                       <input type="text" formControlName="title" class="form-control">
+                      <span *ngIf="saveFormationFormGroup.controls['title'].touched && saveFormationFormGroup.controls['title'].errors && saveFormationFormGroup.controls['title'].errors!['required']" class="text-danger">
+                   Title is required
+                        </span>
+                    </div>
+                    <div class="mb-2">
+                        <label class="input-group-text"> Description : </label>
+                        <input type="text" formControlName="description" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label class="input-group-text"> Date Start : </label>
+                        <input type="datetime-local" formControlName="dateStart" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label class="input-group-text"> Date End: </label>
+                        <input type="datetime-local" formControlName="dateEnd" class="form-control">
+                    </div>
+                    <div class="mb-2 d-flex justify-content-center">
+                    <button [disabled]="!saveFormationFormGroup.valid" class="btn btn-success " > Save </button>
+                        </div>
+
+
+
+            </form>
+        </div>
+    </div>
+</div>
